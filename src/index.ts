@@ -5,7 +5,11 @@ import chalk from "chalk";
 import { add, subtract, multiply, divide } from "./operations";
 import { writeToFile, readFromFile } from "./fileHandler";
 
-const rl = readline.createInterface({ input, output });
+const rl = readline.createInterface(
+    { input: process.stdin, 
+      output: process.stdout
+    }
+);
 
 async function startCalculator() {  
     try {
@@ -17,14 +21,16 @@ async function startCalculator() {
         const num2 = Number(second);
 
         if (isNaN(num1) || isNaN(num2)) {
+            const errorMessage = 'Invalid input. Please enter valid numbers.';
+            await writeToFile("ERROR: " + errorMessage);
             console.log(chalk.red("Invalid input. Please enter valid numbers."));
             return;
         }
 
-        console.log("Add");
-        console.log("Subtract");
-        console.log("Multiply");
-        console.log("Divide");
+        // console.log("Add");
+        // console.log("Subtract");
+        // console.log("Multiply");
+        // console.log("Divide");
 
         const choice = await rl.question(chalk.green("Choose an operation (add, subtract, multiply, divide): "));
         
@@ -46,6 +52,8 @@ async function startCalculator() {
                 break;
             case "divide":
                 if (num2 === 0) {
+                    const errorMessage = "Cannot divide by zero.";
+                    await writeToFile("ERROR: " + errorMessage)
                     console.log(chalk.red("Cannot divide by zero."));
                     return;
                 }   
@@ -60,9 +68,7 @@ async function startCalculator() {
 
         const message = `Result of ${num1} ${symbol} ${num2} = ${result}`;
         console.log(chalk.blue("Result: " + result));
-
         await writeToFile("SUCCESS: " + message);
-     
 
     } catch (error: any) {
         console.log(chalk.red("ERROR: " + error.message));
