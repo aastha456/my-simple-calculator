@@ -1,1 +1,22 @@
+
+First Number: 12
+SecondNumber: 56
+Operation: subtract
+Result: -44
+-----------------------------------------------
+First Number: 34
+Second Number: 12
+Operation: multiply
+Result: 408
+-----------------------------------------------
+First Number: 12,
+        SecondNumber: 34,
+        Operation: add,
+        Result: 46
+        -----------------------------------------------
 ERROR: Invalid operation choice.
+First Number: 23
+Second Number: 21
+Operation: add
+Result: 44
+-----------------------------------------------
